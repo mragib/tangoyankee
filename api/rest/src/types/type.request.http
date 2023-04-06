@@ -1,0 +1,103 @@
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJAZ21haWwuY29tIiwicm9sZSI6eyJjcmVhdGVkX2F0IjoiMjAyMy0wMy0zMVQxMzo0MzozNi4yMTlaIiwidXBkYXRlZF9hdCI6IjIwMjMtMDMtMzFUMTM6NDM6MzYuMjE5WiIsImlkIjoxLCJuYW1lIjoic3VwZXJfYWRtaW4iLCJwZXJtaXR0ZWRfcGFnZSI6W3siaWQiOjEsIm5hbWUiOiJ2aWV3X3JvbGUifSx7ImlkIjoyLCJuYW1lIjoiY3JlYXRlX3JvbGUifSx7ImlkIjozLCJuYW1lIjoidXBkYXRlX3JvbGUifSx7ImlkIjo0LCJuYW1lIjoiZGVsZXRlX3JvbGUifSx7ImlkIjo1LCJuYW1lIjoidmlld190eXBlIn0seyJpZCI6NiwibmFtZSI6ImNyZWF0ZV90eXBlIn0seyJpZCI6NywibmFtZSI6InVwZGF0ZV90eXBlIn0seyJpZCI6OCwibmFtZSI6ImRlbGV0ZV90eXBlIn0seyJpZCI6OSwibmFtZSI6InZpZXdfY2F0ZWdvcnkifSx7ImlkIjoxMCwibmFtZSI6ImNyZWF0ZV9jYXRlZ29yeSJ9XX0sImlzX2FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNjgwNTQxMjg1LCJleHAiOjE2ODA1NDQ4ODV9.Ltj6rlsYvhPhIXbzIu7L9z9XLCrGdbIsvnOBzddfXyM
+###Login
+Post http://localhost:5000/api/token
+Content-Type: application/json
+
+{
+    "email":"r@gmail.com",
+    "password":"test123"
+}
+### Types
+GET http://localhost:5000/api/types
+Authorization:Bearer {{token}}
+
+###Create
+POST http://localhost:5000/api/types
+Content-Type: application/json
+Authorization:Bearer {{token}}
+
+{
+    "name":"Cloth",
+    "slug":"cloth",
+    "icon":"cloth",
+    "promotional_slider":[
+        {
+           "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+        },
+        {
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+        },
+        {
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+      }
+    ],
+    "settings":{
+      "isHome": true,
+      "layoutType": "classic",
+      "productCard": "helium"
+    },
+    "banners":[
+       {
+        "title": "Furniter 2",
+        "description": "test",
+        "image": {
+          "id": 923,
+          "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/923/furniture-banner-2.jpg",
+          "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/923/conversions/furniture-banner-2-thumbnail.jpg"
+        }
+      }
+      
+    ]
+    
+    
+}
+
+
+
+### Delete a type
+DELETE http://localhost:5000/api/types/33
+Authorization:Bearer {{token}}
+
+
+###Update a type
+PUT http://localhost:5000/api/types/34
+Content-Type: application/json
+
+{
+  "name":"updatedCloth",
+    "slug":"updatedcloth",
+    "icon":"cloth",
+    "promotional_slider":[
+        {
+           "original": ":https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
+        "thumbnail": ":https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+        }
+    ],
+    "settings":{
+      "isHome": false,
+      "layoutType": "classic",
+      "productCard": "helium"
+    },
+    "banners":[
+       {
+        "title": "Furniter 2 updated",
+        "description": "test",
+        "image": {
+          "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/923/furniture-banner-2.jpg",
+          "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/923/conversions/furniture-banner-2-thumbnail.jpg"
+        }
+      },
+      {
+        "title": "Branded & imported makeups",
+        "description": "Easiest and cheapest way to get your branded & imported makeups",
+        "image": {
+          "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/makeup.png",
+          "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/makeup-thumbnail.jpg"
+        }
+      }
+    ]
+
+}

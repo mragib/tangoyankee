@@ -1,0 +1,28 @@
+### Get all User ###
+GET http://localhost:5000/api/users
+
+
+### Create a user ###2
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+    "name": "Ragib",
+    "email": "test@gmail.com",
+    
+    "address":[
+        {
+          "title":"test address",
+        "type":"billing",
+  "default":true,
+  "address":{
+    "street_address":"18",
+    "country":"Bangladesh",
+    "city":"Dhaka",
+    "state":"Dhaka",
+    "zip":"1216",
+  },
+        },
+    ],
+    "password":"test123"
+}

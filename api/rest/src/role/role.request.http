@@ -1,0 +1,41 @@
+
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJAZ21haWwuY29tIiwicm9sZSI6eyJjcmVhdGVkX2F0IjoiMjAyMy0wMy0zMVQxMzo0MzozNi4yMTlaIiwidXBkYXRlZF9hdCI6IjIwMjMtMDMtMzFUMTM6NDM6MzYuMjE5WiIsImlkIjoxLCJuYW1lIjoic3VwZXJfYWRtaW4iLCJwZXJtaXR0ZWRfcGFnZSI6W3siaWQiOjEsIm5hbWUiOiJ2aWV3X3JvbGUifSx7ImlkIjoyLCJuYW1lIjoiY3JlYXRlX3JvbGUifSx7ImlkIjozLCJuYW1lIjoidXBkYXRlX3JvbGUifSx7ImlkIjo0LCJuYW1lIjoiZGVsZXRlX3JvbGUifV19LCJpc19hY3RpdmUiOnRydWUsImlhdCI6MTY4MDUzNTI5MCwiZXhwIjoxNjgwNTM4ODkwfQ.t39tqKv3wKY9XpdKXH4qC-kaOAvtULOgBOu-yptZ0Ak
+
+###Login
+Post http://localhost:5000/api/token
+Content-Type: application/json
+
+{
+    "email":"r@gmail.com",
+    "password":"test123"
+}
+
+
+###get all roles
+Get http://localhost:5000/api/role
+Authorization:Bearer {{token}}
+
+
+###Create a new role
+Post http://localhost:5000/api/role
+Content-Type: application/json
+Authorization:Bearer {{token}}
+
+{
+    "name":"test"
+}
+
+###update a role
+put http://localhost:5000/api/role/10
+Content-Type: application/json
+Authorization:Bearer {{token}}
+
+{
+    "name":"update"
+}
+
+
+
+###
+delete http://localhost:5000/api/role/8
+Authorization:Bearer {{token}}

@@ -1,0 +1,18 @@
+### create a user
+POST http://localhost:5000/api/register
+Content-Type: application/json
+
+{
+    "name":"Ragib",
+    "email":"diner1@gmail.com",
+    "password":"test123"
+}
+
+### Sign in
+POST http://localhost:5000/api/token 
+Content-Type: application/json
+
+{
+    "email":"diner1@gmail.com",
+    "password":"test123"
+}
