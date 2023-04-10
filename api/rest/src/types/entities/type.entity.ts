@@ -6,6 +6,7 @@ import {
   Column,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -55,6 +56,6 @@ export class Type extends CoreEntity {
   @OneToMany(() => Category, (item) => item.type)
   category?: Category[];
 
-  @OneToOne(() => Tag, (item) => item.type)
-  tag: Tag;
+  @OneToMany(() => Tag, (item) => item.type)
+  tag: Tag[];
 }

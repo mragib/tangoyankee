@@ -8,6 +8,7 @@ import {
   JoinColumn,
   JoinTable,
   ManyToMany,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -27,16 +28,26 @@ export class Tag extends CoreEntity {
   @Column()
   details?: string;
 
-  @OneToMany(() => Attachment, (item) => item.tag)
+  @OneToOne(() => Attachment, (item) => item.tag, {
+    eager: true,
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   @JoinColumn()
   image: Attachment;
 
   @Column({ length: 100 })
   icon: string;
 
-  @OneToOne(() => Type, (item) => item.tag)
-  @JoinColumn()
+  @ManyToOne(() => Type, (item) => item.tag, {
+    eager: true,
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'type_id' })
   type: Type;
+
+  @Column()
+  type_id: number;
 
   @ManyToMany(() => Product, (item) => item.tags)
   @JoinTable()

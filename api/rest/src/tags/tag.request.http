@@ -1,0 +1,13 @@
+###get all tags
+Get http://localhost:5000/api/tags
+
+###create a tag
+Post http://localhost:5000/api/tags
+Content-Type: application/json
+
+{
+    "name":"test",
+    "details":"test"
+
+
+}

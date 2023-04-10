@@ -2,6 +2,7 @@ import {
   Injectable,
   InternalServerErrorException,
   Logger,
+  NotFoundException,
 } from '@nestjs/common';
 import { paginate } from 'src/common/pagination/paginate';
 import { CreateTagDto } from './dto/create-tag.dto';
@@ -13,6 +14,8 @@ import { plainToClass } from 'class-transformer';
 import Fuse from 'fuse.js';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { AttachmentService } from 'src/common/attachment.service';
+import { User } from 'src/users/entities/user.entity';
 
 const options = {
   keys: ['name'],
@@ -23,14 +26,22 @@ const options = {
 export class TagsService {
   constructor(
     @InjectRepository(Tag) private readonly tagRepo: Repository<Tag>,
+    private readonly attatchmentService: AttachmentService,
   ) {}
   protected logger = new Logger('Tags Service');
 
-  async create(createTagDto: CreateTagDto) {
-    const { name } = createTagDto;
+  async create(createTagDto: CreateTagDto, user: User) {
+    const { name, image } = createTagDto;
     createTagDto.slug = name.toLowerCase();
+    createTagDto.created_by = user;
     try {
-      return this.tagRepo.create(createTagDto);
+      //Insert type settings
+      if (image && Object.keys(image).length > 0) {
+        const imageId = await this.attatchmentService.create({ ...image });
+        createTagDto.image = imageId;
+      }
+      const tag = await this.tagRepo.save(createTagDto);
+      return tag;
     } catch (error) {
       this.logger.error(
         `Failed to create ${JSON.stringify(
@@ -76,14 +87,48 @@ export class TagsService {
   }
 
   findOne(param: string, language: string) {
-    // return this.tags.find((p) => p.id === Number(param) || p.slug === param);
+    let queryParam: any;
+
+    if (!isNaN(Number(param))) {
+      queryParam = { id: Number(param), language };
+    } else {
+      queryParam = { slug: param, language };
+    }
+
+    const found = this.tagRepo.findOne({ where: queryParam });
+
+    if (!found) {
+      throw new NotFoundException('Tag is not found');
+    }
+    return found;
   }
 
-  update(id: number, updateTagDto: UpdateTagDto) {
-    // return this.tags[0];
+  async update(id: number, updateTagDto: UpdateTagDto) {
+    const found = await this.tagRepo.findOneBy({ id });
+    if (!found) {
+      throw new NotFoundException('Tag is not found');
+    }
+    const { name, image } = updateTagDto;
+    try {
+      //Insert type settings
+      if (image && Object.keys(image).length > 0) {
+        await this.attatchmentService.update(image.id, { ...image });
+      }
+
+      updateTagDto.slug = name.toLowerCase();
+      return this.tagRepo.update(id, updateTagDto);
+    } catch (error) {
+      this.logger.error(
+        `Failed to create ${JSON.stringify(
+          updateTagDto,
+        )} Error: ${JSON.stringify(error)}`,
+        error.stack,
+      );
+      throw new InternalServerErrorException('Failed to save data');
+    }
   }
 
   remove(id: number) {
-    return `This action removes a #${id} tag`;
+    return this.tagRepo.delete(id);
   }
 }
