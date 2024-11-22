@@ -1,0 +1,66 @@
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhZ2liMiIsInVzZXJJZCI6Mywicm9sZSI6eyJpZCI6MywibmFtZSI6Im1hbmFnZXIiLCJkZXNjcmlwdGlvbiI6Ik1hbmFnZXIgbWFuYWdlIGFsbCBwcm9kdWN0cyIsImlzX2FjdGl2ZSI6dHJ1ZX0sImlhdCI6MTcyOTE3MTU4NCwiZXhwIjoxNzI5MTc1MTg0fQ.m-rcbX1qlbVN1lw3_uvv9E2eA2BcAUHcf0ziDBI4F4I
+### Sign in an owner ####
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+    "username":"ragib1",
+    "password": "Ragib@06#"
+}
+
+### Sign in an admin ####
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+    "username":"ragib",
+    "password": "Ragib@06#"
+}
+
+
+### Sign in an manager ####
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+    "username":"ragib2",
+    "password": "Ragib@06#"
+}
+
+### Sign in an sales man ####
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+    "username":"ragib3",
+    "password": "Ragib@06#"
+}
+
+### get all attribute set ###
+GET http://localhost:8000/api/attribute-set
+Authorization:Bearer {{token}}
+
+### create a attribute set ###
+POST http://localhost:8000/api/attribute-set
+Content-Type: application/json
+Authorization:Bearer {{token}}
+
+{
+    "name":"test"
+}
+
+### get a attribute set ###
+GET http://localhost:8000/api/attribute-set/1
+Authorization:Bearer {{token}}
+
+### update 
+PATCH http://localhost:8000/api/attribute-set/4
+Content-Type: application/json
+Authorization:Bearer {{token}}
+
+{
+    "name":"test again"
+}
+
+### Delete 
+# DELETE http://localhost:8000/api/attribute-set/3

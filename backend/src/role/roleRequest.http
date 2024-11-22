@@ -1,0 +1,29 @@
+### Get all Role ###
+GET http://localhost:8000/api/role
+
+### Create a Role ###
+POST http://localhost:8000/api/role
+Content-Type: application/json
+
+{
+    "name":"Sales",
+    "description":"Sales man sells products"
+
+}
+
+
+### Get a Role ###
+GET http://localhost:8000/api/role/1
+
+
+### Delete a role ###
+DELETE http://localhost:8000/api/role/2
+
+
+### update a role ###
+PATCH http://localhost:8000/api/role/1
+Content-Type: application/json
+
+{
+    "description":"Admin has all the permissions"
+}

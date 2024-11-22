@@ -1,0 +1,2 @@
+###Get all Sale Revenue
+GET http://localhost:8000/api/sale-revenue

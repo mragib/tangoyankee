@@ -1,0 +1,50 @@
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhZ2liMSIsInVzZXJJZCI6Miwicm9sZSI6eyJpZCI6MiwibmFtZSI6Im93bmVyIiwiZGVzY3JpcHRpb24iOiJPd25lciBtYW5hZ2UgYWxsIEJhbmsgYWNjb3VudHMiLCJpc19hY3RpdmUiOnRydWV9LCJpYXQiOjE3Mjk1NzcyNzksImV4cCI6MTcyOTU4MDg3OX0.HZa7Kh3yU_0k3jIIRx5xG8u69F-PC4VsNmZbLMxbdBA
+### Sign Up a User ####
+POST http://localhost:8000/api/signup
+Content-Type: application/json
+Authorization:Bearer {{token}}
+
+{
+    "first_name": "Md Ragib",
+    "last_name": "Shahriar",
+    "email":"diner.ragib@gmail.com",
+    "password": "Ragib@06#",
+    "phone": "01714906170",
+    "address": "Savar, Dhaka",
+    "username":"ragib",
+    "role":{
+        "id":1
+    }
+}
+
+### Sign in a User ####
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+    "username":"ragib",
+    "password": "password"
+}
+
+### get the auth user ###
+GET http://localhost:8000/api/auth-user
+Authorization:Bearer {{token}}
+
+### get a user ###
+GET http://localhost:8000/api/users/5
+Authorization:Bearer {{token}}
+
+### get all user ###
+GET http://localhost:8000/api/users
+Authorization:Bearer {{token}}
+
+
+### Sign in a User ####
+POST http://localhost:8000/api/change-password
+Content-Type: application/json
+Authorization:Bearer {{token}}
+
+{
+    "old_password":"111",
+    "new_password": "222"
+}

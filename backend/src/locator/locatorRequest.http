@@ -1,0 +1,23 @@
+### get
+GET http://localhost:8000/api/locator
+
+### create
+POST http://localhost:8000/api/locator
+Content-Type: application/json
+
+{
+    "name":"Mohammadpur"
+}
+
+
+### get a
+GET http://localhost:8000/api/locator/1
+
+
+###update
+PATCH http://localhost:8000/api/locator/1
+Content-Type: application/json
+
+{
+    "name":"Mohammadpur"
+}

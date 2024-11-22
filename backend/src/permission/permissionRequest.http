@@ -1,0 +1,22 @@
+### Get all permissions ###
+GET http://localhost:8000/api/permission
+
+### Get a permission ###
+GET http://localhost:8000/api/permission/2
+
+### Create a permission ###
+POST http://localhost:8000/api/permission
+Content-Type: application/json
+
+{
+    "name":"edit_product",
+    "description":"Authenticate user can create product with this permission"
+}
+
+### update a permission ###
+PATCH http://localhost:8000/api/permission/2
+Content-Type: application/json
+
+{
+    "description":"Authenticate user can edit product with this permission"
+}

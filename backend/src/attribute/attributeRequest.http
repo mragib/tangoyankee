@@ -1,0 +1,63 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhZ2liIiwidXNlcklkIjoxLCJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiYWRtaW4iLCJkZXNjcmlwdGlvbiI6IkFkbWluaXN0cmF0b3Igd2l0aCBmdWxsIGFjY2VzcyIsImlzX2FjdGl2ZSI6dHJ1ZX0sImlhdCI6MTczMTczNTAzNSwiZXhwIjoxNzMxNzM4NjM1fQ.2vf6j9Fwh-PN0BXZaanFGW0XnOJOn1FadPByjojLHrQ
+### Sign in a User ####
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+
+    "username":"ragib",
+    "password": "Ragib@06#"
+}
+
+### Get all Attribute ###
+GET http://localhost:8000/api/attribute
+Authorization:Bearer {{token}}
+
+### Create a Attribute ###
+POST http://localhost:8000/api/attribute
+Content-Type: application/json
+Authorization:Bearer {{token}}
+
+{
+  "sellingUnitPrice": "123.65",
+  "buyingUnitPrice":"110.17",
+  "product": {"id":1},
+  "instance": [
+    {"id":1},
+{"id":5}
+  ],
+  "storage": {
+"quantity":500,
+"locator":{"id":1}
+}
+}
+
+### Get a// attribute ###
+GET http://localhost:8000/api/attribute/
+
+### Get a attribute ###
+GET http://localhost:8000/api/attribute/productWithLastPurchasePrice
+
+### Update a attribute ###
+PATCH http://localhost:8000/api/attribute/1
+Content-Type: application/json
+Authorization:Bearer {{token}}
+
+# {
+#   "sellingUnitPrice": "120.25",
+#   "product": {"id":2}
+# #   "instance": [
+# #     {"id":1},
+# # {"id":5}
+# #   ]
+# }
+{
+  "sellingUnitPrice":"123.65",
+  "product":{"name":"steel","id":1},
+  "instance":[
+    {"name":"ksrm","id":1},
+    {"name":"25mm","id":5}
+    ]
+      }
+### Delete a attribute ###
+DELETE http://localhost:8000/api/attribute/24

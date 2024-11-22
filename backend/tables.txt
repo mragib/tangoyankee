@@ -1,0 +1,46 @@
+attribute : id, sellingUnitPrice,productId
+attribute_set:id, name
+instance:id,name,attributeSetId
+attribute_instance: attributeId,instanceId
+product:id,name,unit
+storage:id quantity,is_active,locatorId,pAttributeId
+locator:id, name
+
+actions:
+1. product creation(STEEL, CEMENT)
+2. attribute set creation(COLOR, SIZE, BRAND)
+3. Instance Create/Tag: instance table - (RED, SM, L, WHILTE, RSM, 25mm, FRESH) tag
+4. Varition Create - Tag attribute with Instance (During purchase)
+(1, [RSM, 25mm], STEEL,quantity)
+(2, [KSM, 20mm], STEEL)
+(3, [FRESH], CEMENT)
+
+------ This is for purchase and sells -------
+accounts: id, name, account_number,is_active,type,balance
+payment: id, purchaseId,supplierId,paymentDate,amountPaid,cheque_number,is_valid,accountId,parentTransectionId
+supplier: id,name,address,phone,email,owner,status
+purchase:purchaseDate,totalAmount,invoiceNumber,supplierId
+purchase_item: id,quantity,buyingUnitPrice,attributeId,purchaseId
+
+actions: 
+1. Create Account. (ucb 215478 1 bank 250000 | cash null 1 in-hand 15000)
+2. Create Supplier: (ASM mirpur 01714906170 test@gmail.com Ragib 1)
+3. Create purchase: 
+    3.1 : This will create payment first. 
+        3.1.1: First find the balance based on accountId.Then check payable amount is less than balance. 
+        3.1.2: payable > balance Throw NotAcceptableException with BadRequest
+        3.1.3: payable < balance , reduce balance, update account table. id:1	name:ucb	account_number:2547885	is_active:1	type:bank	balance:previousBalance - amountPaidToSupplier
+    3.2 : This will create purchase Items.
+        3.2.1 : First find quantity the of that item from storage table.
+        3.2.2 : Increase Stoke then update Storage Table. Storage : (id:3 quantity:750 is_active:1 locatorId:1 pAttributeId:4)
+    3.3: Finally Create a purchase: (1 2024-07-01 15000 20240701-12547 1)
+
+
+For sells:
+
+customer: id, name, phone_number, address, email, is_active
+sale: id, totalAmount,invoiceNumber,discount,salesDate,customerId
+sales_item: id,quntity,buyingUnitPrice,saleId,attributeId,sellingUnitPrice
+sale_revenue: id, saleId,customerId,paymentDate,amountPaid,accountId,cheque_number,parentId
+
+1. Create Customer

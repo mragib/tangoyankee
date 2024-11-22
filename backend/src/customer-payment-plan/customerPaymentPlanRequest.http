@@ -1,0 +1,6 @@
+### Get all Customer Payment Plan- ##
+GET http://localhost:8000/api/customer-payment-plan
+
+
+### Get all Customer Payment Plan- ##
+GET http://localhost:8000/api/customer-payment-plan/customer-due-date

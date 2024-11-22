@@ -1,0 +1,19 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhZ2liIiwidXNlcklkIjoxLCJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiYWRtaW4iLCJkZXNjcmlwdGlvbiI6IkFkbWluaXN0cmF0b3Igd2l0aCBmdWxsIGFjY2VzcyIsImlzX2FjdGl2ZSI6dHJ1ZX0sImlhdCI6MTczMDAwMzg1NywiZXhwIjoxNzMwMDA3NDU3fQ._-QiyaTWky62bJGWUcAYI7R2cpANyvWscPSxJ3UjyVI
+### Sign in a User ####
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+    "username":"ragib",
+    "password": "Ragib@06#"
+}
+### Get all Data
+GET http://localhost:8000/api/transactions
+Authorization:Bearer {{token}}
+
+### Get all Data with filter
+GET http://localhost:8000/api/transactions?startDate=2024-10-26&endDate=2024-10-27
+Authorization:Bearer {{token}}
+
+### Get one
+GET http://localhost:8000/api/transactions/6

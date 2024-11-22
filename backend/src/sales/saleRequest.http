@@ -1,0 +1,114 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhZ2liIiwidXNlcklkIjoxLCJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiYWRtaW4iLCJkZXNjcmlwdGlvbiI6IkFkbWluaXN0cmF0b3Igd2l0aCBmdWxsIGFjY2VzcyIsImlzX2FjdGl2ZSI6dHJ1ZX0sImlhdCI6MTczMTQ3MDkzNiwiZXhwIjoxNzMxNDc0NTM2fQ.XF-39ACv6tWdAW09kUQfuv-tZURqrQkwaUfFqfUmPIk
+### Sign in a Admin ####
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+    "username":"ragib",
+    "password": "Ragib@06#"
+}
+
+###GET all Sales ###
+GET http://localhost:8000/api/sales
+Authorization:Bearer {{token}}
+
+###GET all Sales by user ###
+GET http://localhost:8000/api/sales/soldByUser
+Authorization:Bearer {{token}}
+
+### Create a sales ###
+POST http://localhost:8000/api/sales
+Content-Type: application/json
+Authorization:Bearer {{token}}
+
+{
+  "customer": {
+"id":2
+},
+  "purchaseDate": "2024-07-01T16:35:50.274Z",
+  "totalAmount": "12354.35",
+  "invoiceNumber": "2357235334",
+  "saleItems": [
+    {
+"attribute":{"id":25},
+"quantity":125,
+"sellingUnitPrice":"130.22",
+"buyingUnitPrice":"120.22"
+},{
+"attribute":{"id":28},
+"quantity":125,
+"sellingUnitPrice":"130.22",
+"buyingUnitPrice":"120.22"
+},
+{
+"attribute":{"id":25},
+"quantity":125,
+"sellingUnitPrice":"130.22",
+"buyingUnitPrice":"120.22"
+}
+  ],
+  "saleRevenue": [
+    {
+"account":{"id":2},
+"paymentDate":"2024-07-01T16:35:50.274Z",
+"amountPaid":"12580",
+"customer": {
+"id":2
+}
+}
+  ]
+}
+
+
+### Update a sale ###
+PATCH http://localhost:8000/api/sales/1
+Content-Type: application/json
+Authorization:Bearer {{token}}
+
+{
+
+  "customer":{"id":1714906170},
+  "totalAmount":"1400",
+  "discount":"0",
+  "saleItems":[
+    {
+      "quantity":"2",
+    "netAmount":"1400.00",
+    "product":{
+      "label":"Formal pant, Halkai, Black, M","value":1},
+      "maxQuantity":"19 pieces",
+      "unitPrice":700,
+      "sellingUnitPrice":700,
+      "attribute":{"name":"Formal pant, Halkai, Black, M","id":1}
+      }
+      ],
+      "saleRevenue":[
+        {
+          "paymentDate":"2024-11-04",
+          "amountPaid":700,
+          "account":{"name":"CASH","id":1},
+          "customer":{"id":1714906170},
+          "cheque_number":null
+          }
+      ],
+  "customerPaymentPlan":null,
+  "delivery":
+    {
+      "deliveryAddress":"Dhaka",
+      "deliveryDate":"2024-11-07",
+      "deliveryStatus":"Order Received",
+      "action":"SALE",
+      "deliveryCharge":"120"
+    }
+ }
+
+
+
+### Sale Delivery ###
+GET http://localhost:8000/api/sales/delivery
+Authorization:Bearer {{token}}
+
+
+### Delete a sale ###
+DELETE  http://localhost:8000/api/sales/2
+Authorization:Bearer {{token}}

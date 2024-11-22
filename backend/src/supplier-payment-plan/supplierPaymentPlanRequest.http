@@ -1,0 +1,6 @@
+### Get all Supplier Payment Plan- ##
+GET http://localhost:8000/api/supplier-payment-plan
+
+
+### Get all Supplier Payment Plan- ##
+GET http://localhost:8000/api/supplier-payment-plan/supplier-due-date

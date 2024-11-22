@@ -1,0 +1,13 @@
+### Get all Items ####
+GET http://localhost:8000/api/sales-items
+
+### Get all Items ####
+GET http://localhost:8000/api/sales-items/productSales
+
+### Create a Sales item ####
+POST http://localhost:8000/api/sales-items
+Content-Type: application/json
+
+{
+    
+}

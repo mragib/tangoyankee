@@ -1,0 +1,10 @@
+### Get all purchase items ###
+GET http://localhost:8000/api/purchase-items
+
+### Get all purchase items ###
+GET http://localhost:8000/api/purchase-items/productBuyingPrice
+
+### Create a purchase items ###
+POST http://localhost:8000/api/purchase-items
+Content-Type: application/json
+

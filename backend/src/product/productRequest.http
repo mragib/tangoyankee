@@ -1,0 +1,23 @@
+### get all
+GET http://localhost:8000/api/product
+
+### create 
+POST http://localhost:8000/api/product
+Content-Type: application/json
+
+{
+    "name":"test",
+    "unit":"kg"
+}
+
+### get a
+GET http://localhost:8000/api/product/4
+
+### update
+PATCH http://localhost:8000/api/product/3
+Content-Type: application/json
+
+{
+    "name":"cloth",
+    "unit":"piece"
+}

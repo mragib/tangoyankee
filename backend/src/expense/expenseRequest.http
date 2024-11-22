@@ -1,0 +1,24 @@
+### Get all expenses ###
+GET http://localhost:8000/api/expense
+
+### Get a expense
+GET http://localhost:8000/api/expense/1
+
+### Create a new expense
+POST http://localhost:8000/api/expense
+Content-Type: application/json
+
+{
+  "reason": "Hello There",
+  "amount": 1200,
+  "expenseDate": "2024-02-13T04:13:24.642Z"
+}
+
+
+### update an expense
+PATCH http://localhost:8000/api/expense/1
+Content-Type: application/json
+
+{
+    "amount":1500
+}

@@ -1,0 +1,6 @@
+### Testing ##
+GET http://localhost:8000/api/dailty-statement?startDate=2024-09-16
+
+
+### Testing ##
+GET http://localhost:8000/api/purchase-sales-report?startDate=2024-09-16&&endDate=2024-09-23

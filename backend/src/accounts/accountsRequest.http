@@ -1,0 +1,67 @@
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhZ2liIiwidXNlcklkIjoxLCJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiYWRtaW4iLCJkZXNjcmlwdGlvbiI6IkFkbWluIGhhcyBhbGwgdGhlIHBlcm1pc3Npb25zIiwiaXNfYWN0aXZlIjp0cnVlfSwiaWF0IjoxNzI5NDAzNzgxLCJleHAiOjE3Mjk0MDczODF9.SWY9DDkNMjqEaezRpEXD4xI2Yesme5JWPzpj4isTwc4
+### Sign in a User ####
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+
+    "username":"ragib",
+    "password": "Ragib@06#"
+}
+
+### Get All payment methods ###
+GET http://localhost:8000/api/accounts
+Authorization:Bearer {{token}}
+
+### Create a payment method ###
+POST http://localhost:8000/api/accounts
+Content-Type: application/json
+Authorization:Bearer {{token}}
+
+{
+    "name":"Brac", 
+    "balance":"120000.26",
+    "type":"bank",
+    "code":1329,
+    "account_number":"1223 8278 456 967",
+    "parent":{
+        "id":7
+    }
+
+}
+
+### Get a Payment Method ###
+GET http://localhost:8000/api/accounts/2
+Authorization:Bearer {{token}}
+
+### Update a payment Method ###
+PATCH http://localhost:8000/api/accounts/2
+Content-Type: application/json
+Authorization:Bearer {{token}}
+
+{
+ "name":"bkash",
+"type":"digital-wallet",
+"balance": "500"
+}
+
+
+### Delete a payment method ###
+DELETE http://localhost:8000/api/accounts/3
+
+
+### Transfer moeny
+POST http://localhost:8000/api/accounts/transfer
+Content-Type: application/json
+
+{
+    "fromAccount":{
+        "id":13
+    },
+    "toAccount":{
+        "id":14
+    },
+    "amount":"10000.32",
+    "transfer_date":"2024-09-01T16:35:50.274Z"
+}

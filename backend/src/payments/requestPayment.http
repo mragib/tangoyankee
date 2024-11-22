@@ -1,0 +1,43 @@
+### Get all Payments ###
+GET http://localhost:8000/api/payments
+
+
+### create a new payment ##
+POST http://localhost:8000/api/payments
+Content-Type: application/json
+
+{
+    "paymentDate":"1707155315994",
+    "amountPaid":750,
+    "amountPayable":2000
+}
+
+
+### create a new payment ##
+POST http://localhost:8000/api/payments/make-payment
+Content-Type: application/json
+
+{
+  "purchasesWithDues": [
+    {
+      "purchaseId": 6,
+      "totalAmount": 406600,
+      "amountPaid": 318000,
+      "purchaseDate": 1707797604642
+    },
+    {
+      "purchaseId": 7,
+      "totalAmount": 406600,
+      "amountPaid": 18000,
+      "purchaseDate": 1707797604642
+    },
+    {
+      "purchaseId": 16,
+      "totalAmount": 7500000,
+      "amountPaid": 200000,
+      "purchaseDate": 1707890375557
+    }
+  ],
+  "payable": 12258,
+  "supplierId": 1
+}
